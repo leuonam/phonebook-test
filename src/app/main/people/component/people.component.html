@@ -1,0 +1,55 @@
+<ion-row>
+  <ion-col>
+    <div class="skeleton" *ngIf="loading"></div>
+    <ion-item *ngIf="!loading">
+      <ion-label position="floating">Buscar por nombre o apellido</ion-label>
+      <ion-input [(ngModel)]="searchPerson"></ion-input>
+    </ion-item>
+  </ion-col>
+</ion-row>
+
+<ion-row>
+  <ion-col>
+    <div class="skeleton" *ngIf="loading"></div>
+    <ion-item *ngIf="!loading">
+      <ion-label>Buscar por región</ion-label>
+      <ion-select [(ngModel)]="searchRegion" okText="Seleccionar" cancelText="Volver" (ngModelChange)="onChangeRegions($event)">
+        <ion-select-option value="">Todo</ion-select-option>
+        <ion-select-option *ngFor="let region of regions" [value]="region.nombre">{{ region.nombre }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-col>
+  <ion-col>
+    <div class="skeleton" *ngIf="loading"></div>
+    <ion-item *ngIf="!loading">
+      <ion-label>Buscar por comuna</ion-label>
+      <ion-select [(ngModel)]="searchCommune" okText="Seleccionar" cancelText="Volver" (ngModelChange)="onChangeCommunes($event)" disabled ="{{ selectCommunesIsDisabled }}">
+        <ion-select-option value="">Todo</ion-select-option>
+        <ion-select-option *ngFor="let commune of communes" [value]="commune.nombre">{{ commune.nombre }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-col>
+</ion-row>
+
+<ul class="list-group" *ngIf="loading">
+  <li class="list-group__item">
+    <div class="skeleton"></div>
+  </li>
+  <li class="list-group__item">
+    <div class="skeleton"></div>
+  </li>
+  <li class="list-group__item">
+    <div class="skeleton"></div>
+  </li>
+  <li class="list-group__item">
+    <div class="skeleton"></div>
+  </li>
+</ul>
+
+<ul class="list-group" *ngIf="!loading">
+  <ng-container *ngFor="let person of people | peopleFilter: searchPerson | filterRegionsCommune: searchRegion:searchCommune ">
+    <li class="list-group__item" *ngIf="person.activo === 1" (click)="seeDetail(person)">
+      {{ person.nombre }} {{ person.apellido }}
+    </li>
+  </ng-container>
+</ul>

@@ -1,0 +1,23 @@
+<ion-content>
+    <ion-grid class="ion-margin">
+        <ion-text>
+            <p><b>Nombre: </b> {{ person.nombre }}</p>
+        </ion-text>
+        <ion-text>
+            <p><b>Apellido: </b> {{ person.apellido }}</p>
+        </ion-text>
+        <ion-text>
+            <p><b>RUT: </b> {{ person.rut }} <span class="text--danger text--14" [hidden]="!validate">(RUT no válido)</span></p>
+        </ion-text>
+        <ion-text>
+            <p><b>Dirección: </b> {{ person.direccion.calle }} {{ person.direccion.numero }}, {{ person.direccion.comuna.nombre }} , {{ person.direccion.region }}</p>
+        </ion-text>
+        <ion-text>
+            <p><b>Teléfono: </b> {{ person.telefono }} <span class="text--danger text--14" [hidden]="!validPhone">(Número telefonico no válido)</span></p>
+        </ion-text>
+        <ion-row>
+            <ion-button color="success" (click)="closeModal()">Cerrar</ion-button>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+

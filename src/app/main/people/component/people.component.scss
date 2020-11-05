@@ -1,0 +1,46 @@
+.list-group {
+    border: 1px solid #dfdfdf;
+    list-style: none;
+    margin-top: 2rem;
+    padding-left: 0;
+    &__item {
+        border-bottom: 1px solid #dfdfdf;
+        cursor: pointer;
+        padding: 12px;
+        transition: .4s ease-in-out;
+        &:last-child {
+            border-bottom: 0;
+        }
+        &:hover {
+            background-color: #2dd36f;
+        }
+    }
+}
+
+.skeleton {
+    animation: progress 2s ease-in-out infinite;
+    box-sizing: border-box;
+    background: rgb(239, 241, 246) no-repeat;
+    background-image: linear-gradient(90deg, rbga(255, 255, 255, 0), rbga(255, 255, 255, .6), rbga(255, 255, 255, 0));
+    background-size: 200px 100%;
+    border-radius: 0.25rem;
+    display: inline-block;
+    height: 1.25rem;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    &:after,
+    &:before {
+        box-sizing: border-box;
+    }
+}
+
+@keyframes progress {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
