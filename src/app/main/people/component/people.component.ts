@@ -42,7 +42,7 @@ export class PeopleComponent implements OnInit {
       
         if (this.regions) {
           this.regions.forEach((regionObj: Regions) => {
-            regionObj.comunas.forEach((comuna) => {
+            regionObj.comunas.forEach((comuna: { nombre: string; }) => {
               if (comuna.nombre.toLocaleLowerCase().includes(element.direccion.comuna.nombre.toLocaleLowerCase())) {
                 direccion.region = regionObj.nombre;
               }
@@ -70,8 +70,9 @@ export class PeopleComponent implements OnInit {
 
   async obtenerRegiones() {
     let response = await this.apis.getRegions();
-    console.log(response);
-    this.regions = response;
+    if (response) {
+      this.regions = response;
+    }
   }
 
   seeDetail(obj) {
@@ -79,13 +80,14 @@ export class PeopleComponent implements OnInit {
   }
 
   onChangeRegions(e) {
-    console.log(e);
-    this.regions.forEach(element => {
-      if (element.nombre === e) {
-        this.selectCommunesIsDisabled = false;
-        this.communes = element.comunas;
-      }
-    });
+    if (this.regions) {
+      this.regions.forEach(element => {
+        if (element.nombre === e) {
+          this.selectCommunesIsDisabled = false;
+          this.communes = element.comunas;
+        }
+      });
+    }
   }
 
   onChangeCommunes(e) {
@@ -100,5 +102,4 @@ export class PeopleComponent implements OnInit {
     });
     return await modal.present();
   }
-
 }

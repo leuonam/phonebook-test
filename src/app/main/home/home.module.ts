@@ -12,7 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    IonicModule.forRoot()
   ]
 })
 export class HomeModule { }

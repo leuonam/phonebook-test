@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApisService } from 'src/app/core/services/apis.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,14 @@ import { ApisService } from 'src/app/core/services/apis.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private apis: ApisService) { }
+  constructor(private menu: MenuController, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+  }
+
+  goPage(page: any) {
+    this.router.navigate([page], { relativeTo: this.route });
+    this.menu.close();
   }
 
 }

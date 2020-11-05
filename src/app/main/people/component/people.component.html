@@ -48,7 +48,7 @@
 
 <ul class="list-group" *ngIf="!loading">
   <ng-container *ngFor="let person of people | peopleFilter: searchPerson | filterRegionsCommune: searchRegion:searchCommune ">
-    <li class="list-group__item" *ngIf="person.activo === 1" (click)="seeDetail(person)">
+    <li class="list-group__item list-group__item--hover" *ngIf="person.activo === 1" (click)="seeDetail(person)">
       {{ person.nombre }} {{ person.apellido }}
     </li>
   </ng-container>
