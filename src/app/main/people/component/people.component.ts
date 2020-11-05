@@ -80,6 +80,11 @@ export class PeopleComponent implements OnInit {
   }
 
   onChangeRegions(e) {
+    if (e === '') {
+      this.selectCommunesIsDisabled = true;
+      this.communes = [];
+      this.searchCommune = '';
+    }
     if (this.regions) {
       this.regions.forEach(element => {
         if (element.nombre === e) {
@@ -91,7 +96,7 @@ export class PeopleComponent implements OnInit {
   }
 
   onChangeCommunes(e) {
-    if (e === '') this.selectCommunesIsDisabled = true;
+    if (e === '' && this.searchRegion === '') this.selectCommunesIsDisabled = true;
   }
 
   async presentPerson(person: any) {
